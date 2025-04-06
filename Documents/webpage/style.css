@@ -1,0 +1,43 @@
+.logo-title-container{
+    display:flex;
+    flex-direction:row;
+    
+    /* margin:2px solid rgb(53, 53, 46); */
+    /* justify-content:space-between; */
+}
+.header-container{
+    width:100%;
+    border:2px solid yellow;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size:20px;
+}
+
+
+
+.header-logo{
+    border:2px solid green;
+    display:flex;
+}
+.header-title{
+    border:2px solid green;
+    width:fit-content;
+
+}
+
+.search-bar{
+    display:flex;
+    flex-direction:row;
+    border:2px solid red;
+}
+.search-bar-logo{
+    width: fit-content;
+    border:2px solid blue;
+}
+.search-bar-text{
+    width: 80px;
+    border:2px solid yellow;
+
+}
