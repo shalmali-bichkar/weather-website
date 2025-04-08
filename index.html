@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./footer.css">
+   
+    <script defer src="./loader.js" type="module"></script>
+    <!-- <script>setTimeout(1000);</script> -->
+    <script defer async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&loading=async&libraries=places,marker&v=weekly&callback=searchPlace"></script>
+    <!-- <script src ="https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E"></script> -->
+    <!-- <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&callback=initMap&v=weekly&libraries=marker"
+    ></script> -->
+   
+     <!-- <script>
+        var latitude;
+        var longitude;
+        window.onload(initMap())
+        </script> -->
+    <!-- <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&libraries=places,marker"></script> -->
+
+    
+      <script></script>
+      
+    
+</head>
+<body>
+    <header class = "header">
+        <div class = "header-container">
+            <div class = "logo-title-container">
+                <div class = "header-logo"> logo </div>
+                <div class = "header-title"> title </div>
+            </div>
+            <div class = "search-bar" id ="search-bar">
+                <div class = "search-bar-logo">O</div>
+                <div class = "search-bar-text">
+                    <input type = 'text' id = 'search'> 
+                </div>
+            </div>
+        </div>
+        
+    </header>
+    <main class = "main">
+        <!-- <img src ="./sky.jpg"></img> -->
+        <div class = "main-container">
+            
+            <div class = "main-info-and-weekly-container">
+                <div class = "main-info-box">
+                    <div class = "place-name-and-image">
+                        <div class ="place-name" id = "place-name"></div>
+                        <div id = "weather-image">img</div>
+                        
+                    </div>
+                    <div class= "climate-time-box">
+                        <div class = "temp-box">
+                            <div class = "current-temp-box">
+                                <div class = "current-temp " id="current-temp"> </div>
+                                <div class = "current-temp-text">Temperature</div>
+                            </div>
+                            <div class = "feels-like-temp-box">
+                                <div class = "feels-like-temp-text">Feels like</div>
+                                <div class = "temp-feels-like " id="temp-feels-like"> </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class  = "current-weather-stats-box">
+                            <div class = "current-weather current-stats" id="current-weather"> </div>
+                            <div class = "current-weather-description current-stats" id="current-weather-description"> </div>
+                            <div class = "current-pressure current-stats" id="current-pressure"> </div>
+                            <div class = "current-humidity current-stats" id="current-humidity"> </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class = "weekly-forecast-and-title-box"> 
+                    <div class = "weekly-forecast-title-box"> 
+                        <div class ="weekly-forecast-title">
+                            <div>Weekly Forecast</div>
+                        </div> 
+                    </div>
+                    <div class = "weekly-forecast-box">
+                        <div class = "day-container" id = "day1"> 
+                            <div class= "day-title" id = "day1-title"> Day 1</div>
+                            <div class ="day-entire-info-box" id="day1-info">
+                                <div class = "day-temp-box">
+                                    <div class="day-info-box day-info day-temp" id ="day1-temp"></div>
+                                    <div class ="day-info-text">temp</div>
+                                </div>
+                                <div class = "day-info-box day-weather-box">
+                                    <div class="day-info day-weather" id ="day1-weather"></div>
+                                    <div class ="day-info-text">weather</div>
+                                </div>
+                                <div class ="day-info-box day-humidity-box">
+                                    <div class="day-info day-humidity" id ="day1-humidity"></div>
+                                    <div class ="day-info-text">humidity</div>
+                                </div>
+                                <div class = "day-info-box day-pressure-box">
+                                    <div class="day-info day-pressure" id ="day1-pressure"></div>
+                                    <div class ="day-info-text">pressure</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class = "day-container" id = "day2">
+                            <div class= "day-title" id = "day2-title"> Day 2</div>
+                            <div class ="day-entire-info-box" id="day2-info">
+                                <div class="day-info-box day-temp-box">
+                                    <div class="day-info day-temp" id ="day2-temp"></div>
+                                    <div class ="day-info-text">temp</div>
+                                </div>
+                                <div class="day-info-box day-weather-box">
+                                    <div class="day-info day-weather" id ="day2-weather"></div>
+                                    <div class ="day-info-text">weather</div>
+                                </div>
+                                <div class="day-info-box day-humidity-box">
+                                    <div class="day-info day-humidity" id ="day2-humidity"></div>
+                                    <div class ="day-info-text">humidity</div>
+                                </div>
+                                <div class="day-info-box day-pressure-box">
+                                    <div class="day-info day-pressure" id ="day2-pressure"></div>
+                                    <div class ="day-info-text">pressure</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class = "day-container" id = "day3">
+                            <div class= "day-title"  id = "day3-title"> Day 3</div>
+                            <div class ="day-entire-info-box" id="day3-info">
+                                <div class="day-info-box day-temp-box">
+                                    <div class="day-info day-temp" id ="day3-temp"></div>
+                                    <div class ="day-info-text">temp</div>
+                                </div>
+                                <div class="day-info-box day-weather-box">
+                                    <div class="day-info day-weather" id ="day3-weather"></div>
+                                    <div class ="day-info-text">weather</div>
+                                </div>
+                                <div class="day-info-box day-humidity-box">
+                                    <div class="day-info day-humidity" id ="day3-humidity"></div>
+                                    <div class ="day-info-text">humidity</div>
+                                </div>
+                                <div class="day-info-box day-pressure-box">
+                                    <div class="day-info day-pressure" id ="day3-pressure"></div>
+                                    <div class ="day-info-text">pressure</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class = "day-container" id = "day4">
+                            <div class= "day-title" id = "day4-title"> Day 4</div>
+                            <div class ="day-entire-info-box" id="day4-info">
+                                <div class="day-info-box day-temp-box">
+                                    <div class="day-info day-temp" id ="day4-temp"></div>
+                                    <div class ="day-info-text">temp</div>
+                                </div>
+                                <div class="day-info-box day-weather-box">
+                                    <div class="day-info day-weather" id ="day4-weather"></div>
+                                    <div class ="day-info-text">weather</div>
+                                </div>
+                                <div class="day-info-box day-humidity-box">
+                                    <div class="day-info day-humidity" id ="day4-humidity"></div>
+                                    <div class ="day-info-text">humidity</div>
+                                </div>
+                                <div class="day-info-box day-pressure-box">
+                                    <div class="day-info day-pressure" id ="day4-pressure"></div>
+                                    <div class ="day-info-text">pressure</div>
+                                </div> 
+                            </div>
+                            
+                        </div>
+                        <div class = "day-container" id = "day5">
+                            <div class= "day-title" id = "day5-title"> Day 5</div>
+                            <div class ="day-entire-info-box" id="day5-info">
+                                <div class="day-info-box day-temp-box">
+                                    <div class="day-info day-temp" id ="day5-temp"></div>
+                                    <div class ="day-info-text">temp</div>
+                                </div>
+                                <div class="day-info-box day-weather-box">
+                                    <div class="day-info day-weather" id ="day5-weather"></div>
+                                    <div class ="day-info-text">weather</div>
+                                </div>
+                                <div class="day-info-box day-humidity-box">
+                                    <div class="day-info day-humidity" id ="day5-humidity"></div>
+                                    <div class ="day-info-text">humidity</div>
+                                </div>
+                                <div class="day-info-box day-pressure-box">
+                                    <div class="day-info day-pressure" id ="day5-pressure"></div>
+                                    <div class ="day-info-text">pressure</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class = "day-container" id = "day6">
+                            <div class= "day-title" id = "day6-title"> Day 6</div>
+                            <div class ="day-entire-info-box" id="day6-info">
+                                <div class="day-info-box day-temp-box">
+                                    <div class="day-info day-temp" id ="day6-temp"></div>
+                                    <div class ="day-info-text">temp</div>
+                                </div>
+                                <div class="day-info-box day-weather-box">
+                                    <div class="day-info day6-weather" id ="day6-weather"></div>
+                                    <div class ="day-info-text">weather</div>
+                                </div>
+                                <div class="day-info-box day-humidity-box">
+                                    <div class="day-info day6-humidity" id ="day6-humidity"></div>
+                                    <div class ="day-info-text">humidity</div>
+                                </div>
+                                <div class="day-info-box day-pressure-box">
+                                    <div class="day-info day6-pressure" id ="day6-pressure"></div>
+                                    <div class ="day-info-text">pressure</div>
+                                </div>  
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+    
+                </div>
+            </div>
+            
+            <div class = "saved-places-and-map-container"> 
+                <div class = "map" id ="map"></div>
+                <div class = "saved-places-container">
+                    <div class = "saved-place-box"></div>
+                </div>
+                <div class = "add-place-btn" id ="add-place-btn">+</div>
+            </div>
+        </div>
+
+    </main>
+    <footer class ="footer">
+        <div class = "footer-container">footer </div>
+    </footer>
+
+    <script type="text/javascript" src="./script.js"></script>
+    
+</body>
+</html>
