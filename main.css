@@ -1,12 +1,21 @@
+
+
+
+.body{
+    /* background-image: url(sky.jpg); */
+    background-size:99.99%;
+    max-width: 99%;
+    max-height: 99%;
+}
 .main{
     height: calc(100vh - 134px);
     display:flex;
     justify-content:center;
     align-items: center;
-    border:2px solid blue;
+    /* border:2px solid blue; */
     height:850px;
     /* flex-direction:row; */
-    background-image: url(sky.jpg);
+    
 
     font-family: "Open Sans", serif;
     font-optical-sizing: auto;
@@ -22,7 +31,7 @@
     border-radius:10px;
     box-shadow:2px 2px 32px -18px ;
     height:750px;
-    width:70%;
+    width:76%;
     flex-direction:column;
     /* justify-content:space-evenly; */
     /* flex-wrap:wrap; */
@@ -41,7 +50,7 @@
 .main-info-box{
     display:flex;
     background-color:white;
-    margin-left:13px;
+    margin-left:26px;
     /* margin-right:10px; */
     height:400px;
     width:30%;
@@ -51,6 +60,7 @@
     flex-direction: column;
     justify-content:center;
     align-items:space-around;
+    /* margin-left:20px; */
     
 }
 .place-name-and-image{
@@ -160,15 +170,18 @@
     /* justify-content: center; */
     height:40px;
 }
-.current-weather{
-
-}
+/* .current-weather{
+    display:flex;
+    margin-right:30px;
+} */
 .weekly-forecast-and-title-box{
     display:flex;
-    width:60%;
+    width:80%;
     height:400px;
+    margin-left:10px;
     margin-right:10px;
     flex-direction:column;
+
 }
 .weekly-forecast-title-box{
     display:flex;
@@ -192,7 +205,7 @@
 }
 .weekly-forecast-box{
     display:flex;
-    width:105%;
+    width:100%;
     height:320px;
     /* align-items: end; */
     flex-direction:row;
@@ -210,8 +223,9 @@
     background-color:white;
     border-radius: 15px;
     box-shadow:1px 2px 33px -20px ;
-    width:13%;
+    width:14.5%;
     height:320px;
+    /* margin-left:15px; */
    
 }
 .day-title{
@@ -220,7 +234,7 @@
     justify-content:center;
     height:110px;
     align-items:center;
-    font-size:28px;
+    font-size:26px;
     font-weight:400;
 }
 .day-entire-info-box{
@@ -254,12 +268,91 @@
     justify-content:center;
     align-items:start;
     color:rgb(98, 98, 98);
+}   
+.bottom-saved-places-and-add-btn-container{
+    display:flex;
+    height:35%;
+    flex-direction:row;
+    width:90%;
+    /* align-self:center;
+    justify-content: space-around; */
+    margin-bottom:0px;
 }
 
-.saved-places-and-map-container{
-    height:35%;
+.modal-container{
+    display:none;
+    position:fixed;
+    z-index:90;
+    width:fit-content;
+    height: fit-content;
+    left:460px;
+    top:700px;
+    background-color: rgb(78, 114, 145);
+    color:white;
+    border-radius:12%
+}
+.modal{
+    display:flex;
+    flex-direction:column;
+}
+.modal-place-name-and-image{
     display:flex;
     flex-direction: row;
+}
+.modal-place-name{
+    display:flex;
+    height:100px;
+    justify-content:center;
+    align-items:center;
+    margin-left:40px;
+    font-size:28px;
+    font-weight:500;
+}
+.modal-weather-image{
+    display:flex;
+    margin-left:40px;
+    margin-right:20px;
+}
+.modal-main-info{
+    display:flex;
+    flex-direction: column;
+    height:fit-content;
+    margin:0px;
+}
+.modal-temperature{
+    display: flex;
+    padding: 10px;
+    margin-left:10px;
+    font-weight:400;
+    font-size:20px;
+}
+.modal-weather{
+    display: flex;
+    padding: 10px;
+    margin-left:10px;
+    font-weight:400;
+    font-size:20px;
+}
+.modal-pressure{
+    display: flex;
+    padding: 10px;
+    font-weight:400;
+    margin-left:10px;
+}
+.modal-humidity{
+    display: flex;
+    padding: 10px;
+    font-weight:400;
+    margin-left:10px;
+    margin-bottom:20px;
+}
+.saved-places-and-map-container{
+    height:100%;
+    display:flex;
+    flex-direction: row;
+    width:90%;
+    height:100%;
+
     /* border:2px solid blue; */
 }
 .map{
@@ -270,22 +363,49 @@
     border:2px solid green;
     /* margin:8px; */
     margin-left:20px;
+    display:none;
 }
+
 .saved-places-container{
     display:flex;
     flex-direction: row;
+    width:fit-content;
+    /* width:px; */
+    /* border:2px solid green; */
+    /* align-self: center; */
+    justify-self: center;
+    margin-left:30px;
+    /* align-self:center; */
 }
 .saved-place-box{
     display:flex;
     height:100%;
     width:200px;
-    border:2px solid green;
+    /* border:2px solid green; */
+    border-radius:8%;
+    margin-left:15px;
+    margin-right:15px;
+    flex-direction:column;
+    background-color: rgba(233, 234, 235, 0.993);
 }
 .add-place-btn{
     height:50px;
     width:50px;
     margin:6px;
-    display:flex;
+    display:block;
+    background-color:grey;
+    border-radius:50px;
+    align-self:center;
+    justify-content:center;
+    /* align-items:center; */
+    font-size:30px;
+    color:white;
+}
+/* .swiper-button-prev{
+    height:50px;
+    width:50px;
+    margin:6px;
+    display:block;
     background-color:grey;
     border-radius:50px;
     align-self:center;
@@ -293,4 +413,87 @@
     align-items:center;
     font-size:30px;
     color:white;
+} */
+/* .swiper-button-prev{
+    height:50px;
+    width:50px;
+    margin:6px;
+    display:block;
+    background-color:grey;
+    border-radius:50px;
+    align-self:center;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    color:white;
+}.swiper-button-next{
+    height:50px;
+    width:50px;
+    margin:6px;
+    display:block;
+    background-color:grey;
+    border-radius:50px;
+    align-self:center;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    color:white;
+} */
+.saved-place-weather-image{
+    height:fit-content;;
+    /* border:2px solid green; */
+    width:fit-content;
+    align-self:center;
+    justify-content: center;
+    align-items: center;;
 }
+.saved_place_name_and_icon_box{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.saved-place-name-box{
+    margin-top:20px;
+    display:flex;
+    align-self:center;
+    height:fit-content;
+    justify-content: center;
+    align-items:center;
+    font-size:22px;
+    font-weight:400;
+    
+}
+.saved-place-temp-box{
+    display:flex;
+    height:fit-content;
+    align-self: center;
+    margin:5px;
+    width:80%;
+}
+.saved-place-humidity-box{
+    display:flex;
+    height:60px;
+    margin:5px;
+    align-self: center;
+    width:80%;
+    margin-bottom:0px;
+}
+.clear-place-button{
+    display:flex;
+    height:30px;
+    border:2px solid brown;
+    /* justify-self:bottom; */
+    width:50%;
+    align-self:center;
+    color:brown;
+    justify-content: center;
+    align-items: center;
+    font-size:12px;
+    font-weight:500;
+    margin-bottom:10px;
+}
+
+/* .hide .add-place-btn{
+    display:none;
+
+} */

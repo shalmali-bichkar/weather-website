@@ -1,4 +1,116 @@
-.footer{
-    height:120px;
+
+p{ /* removing margin and padding from all paragraph tags*/
+    margin:0px;
+    padding:0px;
+}
+
+.footer{ /*styling overall footer*/
+    height: fit-content;
+    border-top:1px solid #c9c3c3;
+    display:flex;
+    width:100%;
+    justify-content:center;
+    margin:0px 0px 0px 0px;
+    padding-top:6px;
+    padding-bottom: 4px;
+    background-color: rgba(240, 248, 255, 0.342);
     
+}
+
+.footer-content-container{ /*arranging content inside the footer in a column*/
+    display:flex;
+    flex-direction: column;
+    width:90%;
+    /* margin-left:70px;
+    margin-right:70px; */
+    /* border:2px solid green; */
+    
+}
+
+.footer-code-connect-container{ /* arranging contents inside in a row */
+    height:fit-content;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.footer-logo-title-container{ /*showing logo and 'calculator' and arranging them both next to each other */
+    padding:2px;
+    display:flex;
+    flex-direction: row;
+    height:34px;
+    align-items: center;
+    width:33%;
+}
+
+.footer-calc-icon{ /*styling calculator icon in the footer*/
+    height:20px;
+    width:18px;
+    border-radius: 4px;
+} 
+
+.footer-title{ /*arranging 'calculator' text */
+    padding-left:6px;
+}
+
+.footer-view-code-container{ /*styling the div container of 'view-code*/
+    display:flex;
+    height:34px;
+    justify-content: center;
+    padding:2px;
+    width:33%;
+}
+
+.footer-view-code-text{ /*styling view-code text */
+    color: black;
+    text-decoration: none;
+    align-self:center;
+}
+
+.footer-view-code-text:hover{ /*adding effects to view-code text on hover */
+    color: var(--dark-btn-purple);
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.footer-connect-links-container{ /*arranging and styling the container for links in footer */
+    display:flex;
+    justify-content:space-around;
+    flex-direction: row;
+    padding:2px 60px;
+    height:34px;
+    width:33%;
+    align-items: center;
+    padding-left:    
+}
+
+
+.footer-connect-text{ /*styling the text 'connect with me'*/
+    text-align: right;
+    align-self: center;
+    margin-right:18px;
+    margin-left:28px;
+}
+
+.footer-link-icon{ /*styling the svg icon of the various webpage links */
+    height:30px;
+    width:30px;
+    padding-left:2px;
+    padding-top:4px;
+    padding-right:2px;
+    align-self: center;
+    border-radius:5px;
+    fill:var(--dark-btn-purple);
+}
+
+.footer-end-display{/*styling the last line(Shalmali Rajan Bichkar, 2024) of text of the footer */
+    display:flex;
+    height:fit-content;
+    margin-bottom:4px;
+    margin-top:6px;
+    padding:0px;
+    font-size: 16px;
+    align-self: center;
+    color:rgb(73, 73, 73);
+    letter-spacing: 2px;
 }

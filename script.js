@@ -1,6 +1,36 @@
+
+
 var longitude = 0.0;
 var latitude = 0.0;
+var count = 0;
+var i =0;
+var place_name_log = new String(" ");
+var saved_place_count=0;
+// console.log(localStorage.getItem("locations"));
+console.log("hello")
+const storedPlacesStr= localStorage.getItem('locations');
+let storedPlacesObj=null;
+let storedPlaces = new Map();
+if (storedPlacesStr) {
+  try {
+    storedPlacesObj = JSON.parse(storedPlacesStr);
 
+    storedPlaces= new Map(Object.entries(storedPlacesObj));
+    // saved_place_count = storedPlaces.size
+  } catch (e) {
+    console.error('Failed to parse locations from localStorage:', e);
+  }
+}
+
+console.log(localStorage.getItem("locations"));
+//const storedPlaces= new Map(Object.entries(storedPlacesObj));
+console.log(storedPlaces)
+
+
+function start(){
+    initMap();
+    searchPlace();
+}
 
 
 function initMap(){
@@ -19,6 +49,9 @@ function initMap(){
     const infowindow = new google.maps.InfoWindow();
 
     geocodeLatLng(geocoder,map,infowindow,latitude,longitude);
+    showPlaceCardsOnLoad();
+    showSavedPlaces()
+
 }
 
 function geocodeLatLng(geocoder,map,infoWindow,latitude,longitude){
@@ -49,6 +82,9 @@ function geocodeLatLng(geocoder,map,infoWindow,latitude,longitude){
             map.panTo(latlng);
         
     })
+    
+    
+    
 }
 
 function showCurrentPlace(response){
@@ -56,6 +92,7 @@ function showCurrentPlace(response){
     console.log("location is");
     console.log(response);
     console.log(response.results[0].formatted_address);
+    
     for(var k =0;k<response.results.length;k++){
         for (var i=0; i<response.results[k].address_components.length; i++){
            for (var j=0; j<response.results[k].address_components[i].types.length; j++){
@@ -66,8 +103,12 @@ function showCurrentPlace(response){
             }
         }
     }
+
     place_name.innerHTML = name;
+    place_name_log = name;
 }
+
+
 
 async function getCurrentData(){
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=56ce703a41415e8c6aee4f9d2bf5ca01`;
@@ -81,11 +122,14 @@ async function getCurrentData(){
         const data = await response.json();
         //var temp = file.main.temp;
         //console.log(file);
-        // console.log(data);
+        console.log(data);
+        checkPlaceInStorage()
         displayClimateInfo(data);
     }catch (error){
         console.error(error.message);
     }
+
+    
 }
 
 async function getFutureData(){
@@ -103,8 +147,15 @@ async function getFutureData(){
         console.log(forecast_data.list[0].main.temp);
         console.log(forecast_data.list[1].main.temp);
 
-        displayForecastInfo(forecast_data);
+
+        for(let i=0;i<6;i++){
         
+        let temp = `day${i+1}-temp`
+        let weather = `day${i+1}-weather`
+        let humidity = `day${i+1}-humidity`
+        let pressure = `day${i+1}-pressure`
+        displayForecastInfo(forecast_data,temp,weather, humidity,pressure,i);
+        }
     }catch (error){
         // console.error('Error fetching data:', error);
         console.error(error.message);
@@ -122,14 +173,14 @@ function displayClimateInfo(data){
     var pressure = data.main.pressure;
     var humidity = data.main.humidity;
     
-    var icon = data.weather[0].icon;
+    let icon = data.weather[0].icon;
     
     const climate_time_box= document.getElementById("weather-image");
     
     climate_time_box.innerHTML = `<img alt="icon" src="http://openweathermap.org/img/w/${icon}.png" width="100" height="100" />`
     
-
     
+    console.log(typeof(icon))
     const current_temp = document.getElementById("current-temp");
     const temp_feels_like = document.getElementById("temp-feels-like");
     const current_weather = document.getElementById("current-weather");
@@ -148,94 +199,127 @@ function displayClimateInfo(data){
     // console.log(name);
     // console.log(weather);
     // console.log(icon);
+    decidingBackground(icon)
 }
-
-function displayForecastInfo(data){
-    var day1_temp_info = data.list[0].main.temp;
-    var day2_temp_info = data.list[1].main.temp;
-    var day3_temp_info = data.list[2].main.temp;
-    var day4_temp_info = data.list[3].main.temp;
-    var day5_temp_info = data.list[4].main.temp;
-    var day6_temp_info = data.list[5].main.temp;
-
-    const day1_temp = document.getElementById("day1-temp");
-    const day2_temp = document.getElementById("day2-temp");
-    const day3_temp = document.getElementById("day3-temp");
-    const day4_temp = document.getElementById("day4-temp");
-    const day5_temp = document.getElementById("day5-temp");
-    const day6_temp = document.getElementById("day6-temp");
-
-    day1_temp.innerHTML = day1_temp_info;
-    day2_temp.innerHTML = day2_temp_info;
-    day3_temp.innerHTML = day3_temp_info;
-    day4_temp.innerHTML = day4_temp_info;
-    day5_temp.innerHTML = day5_temp_info;
-    day6_temp.innerHTML = day6_temp_info;
-
-    var day1_weather_info = data.list[0].weather[0].main;
-    var day2_weather_info = data.list[1].weather[0].main;
-    var day3_weather_info = data.list[2].weather[0].main;
-    var day4_weather_info = data.list[3].weather[0].main;
-    var day5_weather_info = data.list[4].weather[0].main;
-    var day6_weather_info = data.list[5].weather[0].main;
-
-
-    const day1_weather = document.getElementById("day1-weather");
-    const day2_weather = document.getElementById("day2-weather");
-    const day3_weather = document.getElementById("day3-weather");
-    const day4_weather = document.getElementById("day4-weather");
-    const day5_weather = document.getElementById("day5-weather");
-    const day6_weather = document.getElementById("day6-weather");
-
-    day1_weather.innerHTML = day1_weather_info;
-    day2_weather.innerHTML = day2_weather_info;
-    day3_weather.innerHTML = day3_weather_info;
-    day4_weather.innerHTML = day4_weather_info;
-    day5_weather.innerHTML = day5_weather_info;
-    day6_weather.innerHTML = day6_weather_info;
-
-
-    var day1_humidity_info = data.list[0].main.humidity;
-    var day2_humidity_info = data.list[1].main.humidity;
-    var day3_humidity_info = data.list[2].main.humidity;
-    var day4_humidity_info = data.list[3].main.humidity;
-    var day5_humidity_info = data.list[4].main.humidity;
-    var day6_humidity_info = data.list[5].main.humidity;    
-
-    const day1_humidity = document.getElementById("day1-humidity");
-    const day2_humidity = document.getElementById("day2-humidity");
-    const day3_humidity = document.getElementById("day3-humidity");
-    const day4_humidity = document.getElementById("day4-humidity");
-    const day5_humidity = document.getElementById("day5-humidity");
-    const day6_humidity = document.getElementById("day6-humidity");
-
-    day1_humidity.innerHTML = day1_humidity_info;
-    day2_humidity.innerHTML = day2_humidity_info;
-    day3_humidity.innerHTML = day3_humidity_info;
-    day4_humidity.innerHTML = day4_humidity_info;
-    day5_humidity.innerHTML = day5_humidity_info;
-    day6_humidity.innerHTML = day6_humidity_info;
-
-    var day1_pressure_info = data.list[0].main.pressure;
-    var day2_pressure_info = data.list[1].main.pressure;
-    var day3_pressure_info = data.list[2].main.pressure;
-    var day4_pressure_info = data.list[3].main.pressure;
-    var day5_pressure_info = data.list[4].main.pressure;
-    var day6_pressure_info = data.list[5].main.pressure;
-
-    const day1_pressure = document.getElementById("day1-pressure");
-    const day2_pressure = document.getElementById("day2-pressure");
-    const day3_pressure = document.getElementById("day3-pressure");
-    const day4_pressure = document.getElementById("day4-pressure");
-    const day5_pressure = document.getElementById("day5-pressure");
-    const day6_pressure = document.getElementById("day6-pressure");
+function decidingBackground(icon){
+    let icons_map = new Map([["01d",0],["02d",1],["03d",2],["04d",3],["09d",4],["10d",5],["11d",6],["13d",7],["50d",8],["01n",9],["02n",10],["03n",11],["04n",12],["09n",13],["10n",14],["11n",15],["13n",17],["50n",18]])
+    const insert_arr = ["clearsky.jpg","sky.jpg","sky.jpg","sky.jpg","rainfall.jpeg","rainfall.jpeg","thunderstorm.jpg","snowfall.jpg","mist.jpg","clearnightsky.jpg","nightclouds.jpg","nightclouds.jpg","nightclouds.jpg","rainfall.jpeg","rainfall.jpeg","thunderstorm.jpg",,"snowfall.jpg","mist.jpg"]
+    let id = icons_map.get(icon)
+    let img_insert = insert_arr[id];
+    console.log("EXECUTED")
+    document.getElementById("body").style.backgroundImage = `url(${img_insert})`;
     
-    day1_pressure.innerHTML = day1_pressure_info;
-    day2_pressure.innerHTML = day2_pressure_info;
-    day3_pressure.innerHTML = day3_pressure_info;
-    day4_pressure.innerHTML = day4_pressure_info;
-    day5_pressure.innerHTML = day5_pressure_info;
-    day6_pressure.innerHTML = day6_pressure_info;
+}
+function displayForecastInfo(data,temp,weather,humidity,pressure,i){
+    const now = new Date();
+    let day_index = (now.getDay()+i+1);
+    const days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+        let day = document.getElementById(`day${i+1}-title`)
+        day.innerHTML = days_of_week[day_index];
+
+        let day_temp_info = data.list[i].main.temp;
+        let day_temp = document.getElementById(temp);
+        day_temp.innerHTML = day_temp_info;
+
+        let day_weather_info = data.list[i].weather[0].main;
+        let day_weather = document.getElementById(weather);
+        day_weather.innerHTML = day_weather_info;
+
+        let day_humidity_info = data.list[i].main.humidity
+        let day_humidity = document.getElementById(humidity);
+        day_humidity.innerHTML = day_humidity_info;
+
+        let day_pressure_info = data.list[i].main.pressure;
+        let day_pressure = document.getElementById(pressure);
+        day_pressure.innerHTML = day_pressure_info;
+        
+    
+    // var day1_temp_info = data.list[0].main.temp;
+    // var day2_temp_info = data.list[1].main.temp;
+    // var day3_temp_info = data.list[2].main.temp;
+    // var day4_temp_info = data.list[3].main.temp;
+    // var day5_temp_info = data.list[4].main.temp;
+    // var day6_temp_info = data.list[5].main.temp;
+
+    // const day1_temp = document.getElementById("day1-temp");
+    // const day2_temp = document.getElementById("day2-temp");
+    // const day3_temp = document.getElementById("day3-temp");
+    // const day4_temp = document.getElementById("day4-temp");
+    // const day5_temp = document.getElementById("day5-temp");
+    // const day6_temp = document.getElementById("day6-temp");
+
+    // day1_temp.innerHTML = day1_temp_info;
+    // day2_temp.innerHTML = day2_temp_info;
+    // day3_temp.innerHTML = day3_temp_info;
+    // day4_temp.innerHTML = day4_temp_info;
+    // day5_temp.innerHTML = day5_temp_info;
+    // day6_temp.innerHTML = day6_temp_info;
+
+    // var day1_weather_info = data.list[0].weather[0].main;
+    // var day2_weather_info = data.list[1].weather[0].main;
+    // var day3_weather_info = data.list[2].weather[0].main;
+    // var day4_weather_info = data.list[3].weather[0].main;
+    // var day5_weather_info = data.list[4].weather[0].main;
+    // var day6_weather_info = data.list[5].weather[0].main;
+
+
+    // const day1_weather = document.getElementById("day1-weather");
+    // const day2_weather = document.getElementById("day2-weather");
+    // const day3_weather = document.getElementById("day3-weather");
+    // const day4_weather = document.getElementById("day4-weather");
+    // const day5_weather = document.getElementById("day5-weather");
+    // const day6_weather = document.getElementById("day6-weather");
+
+    // day1_weather.innerHTML = day1_weather_info;
+    // day2_weather.innerHTML = day2_weather_info;
+    // day3_weather.innerHTML = day3_weather_info;
+    // day4_weather.innerHTML = day4_weather_info;
+    // day5_weather.innerHTML = day5_weather_info;
+    // day6_weather.innerHTML = day6_weather_info;
+
+
+    // var day1_humidity_info = data.list[0].main.humidity;
+    // var day2_humidity_info = data.list[1].main.humidity;
+    // var day3_humidity_info = data.list[2].main.humidity;
+    // var day4_humidity_info = data.list[3].main.humidity;
+    // var day5_humidity_info = data.list[4].main.humidity;
+    // var day6_humidity_info = data.list[5].main.humidity;    
+
+    // const day1_humidity = document.getElementById("day1-humidity");
+    // const day2_humidity = document.getElementById("day2-humidity");
+    // const day3_humidity = document.getElementById("day3-humidity");
+    // const day4_humidity = document.getElementById("day4-humidity");
+    // const day5_humidity = document.getElementById("day5-humidity");
+    // const day6_humidity = document.getElementById("day6-humidity");
+
+    // day1_humidity.innerHTML = day1_humidity_info;
+    // day2_humidity.innerHTML = day2_humidity_info;
+    // day3_humidity.innerHTML = day3_humidity_info;
+    // day4_humidity.innerHTML = day4_humidity_info;
+    // day5_humidity.innerHTML = day5_humidity_info;
+    // day6_humidity.innerHTML = day6_humidity_info;
+
+    // var day1_pressure_info = data.list[0].main.pressure;
+    // var day2_pressure_info = data.list[1].main.pressure;
+    // var day3_pressure_info = data.list[2].main.pressure;
+    // var day4_pressure_info = data.list[3].main.pressure;
+    // var day5_pressure_info = data.list[4].main.pressure;
+    // var day6_pressure_info = data.list[5].main.pressure;
+
+    // const day1_pressure = document.getElementById("day1-pressure");
+    // const day2_pressure = document.getElementById("day2-pressure");
+    // const day3_pressure = document.getElementById("day3-pressure");
+    // const day4_pressure = document.getElementById("day4-pressure");
+    // const day5_pressure = document.getElementById("day5-pressure");
+    // const day6_pressure = document.getElementById("day6-pressure");
+    
+    // day1_pressure.innerHTML = day1_pressure_info;
+    // day2_pressure.innerHTML = day2_pressure_info;
+    // day3_pressure.innerHTML = day3_pressure_info;
+    // day4_pressure.innerHTML = day4_pressure_info;
+    // day5_pressure.innerHTML = day5_pressure_info;
+    // day6_pressure.innerHTML = day6_pressure_info;
 
 }
 
@@ -287,6 +371,7 @@ function addMarker(){
        
     });
     map.panTo(latlng);
+    map.setZoom(6);
 }
 
 function show(){
@@ -303,27 +388,302 @@ function show(){
     longitude = place.geometry.location.lng();
     console.log(latitude);
 
-    
+    place_name_log = name;
     // console.log("the place is");
     // initMap(latitude,longitude);
     const place_name = document.getElementById("place-name");
     place_name.innerHTML = name;
 
+
     getCurrentData();
     getFutureData();
     addMarker();
     
+    
 }
+
+var add_place_btn = document.getElementById("add-place-btn");
+function checkPlaceInStorage(){
+    const newCoord = [parseFloat(latitude).toFixed(3),parseFloat(longitude).toFixed(3)]
+
+    const newCoordStr = newCoord.toString();
+    
+    const exists = storedPlaces.has(newCoordStr);
+    console.log("hide")
+    if(!exists ) {
+        // document.add_place_btn.style.visibility = 'visible';
+        // document.add_place_btn.hidden = false
+        add_place_btn.style.display = "block" 
+        document.getElementById("add-place-btn").hidden = false
+        console.log("hide")
+        
+    } else {
+        console.log("Coordinate already exists.");
+        // document.add_place_btn.style.visibility = 'hidden';
+        // body.classList.add("show")
+        document.getElementById("add-place-btn").hidden = true
+        add_place_btn.style.display = "none" 
+        console.log("show")
+    }
+}
+
+add_place_btn.addEventListener("click", event => addPlace());
 function addPlace(){
+    if(storedPlaces.size<10){
+        add_place_btn.style.display = "none"
+        let name = (document.getElementById("place-name")).innerText  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+        const newCoord = [parseFloat(latitude).toFixed(3),parseFloat(longitude).toFixed(3)]
+    
+        const newCoordStr = newCoord.toString();
+    
+        storedPlaces.set(newCoordStr, name);
+        localStorage.setItem("locations", JSON.stringify(Object.fromEntries(storedPlaces)));
+        
+        
+        console.log(storedPlaces.get(newCoordStr));
+        console.log("hello");
+        console.log(localStorage.getItem("locations"));
+        showSavedPlaces()
+        addPlaceCard()
+    }
+    else{
+        window.alert("Only 10 places allowed")
+    }
+    
+
+    
     
 }
-// function addPlace(){
-//     var container= document.querySelector(".saved-places-container");
-//     var input = document.createElement("place");
+var remove_place_btn = document.getElementById("header-logo");
+remove_place_btn.addEventListener("click", (e) => {
+    console.log("cleared")
+    storedPlaces.clear()
+    localStorage.setItem("locations", JSON.stringify(Object.fromEntries(storedPlaces)));
+    // saved_place_count = 0;
     
-//     input.className = "saved-place-box"; 
-//     container.appendChild(input);
+});
+
+async function showSavedPlaces(){
+    let place;
+    
+    let promises =[];
+    let keys = [];
+    let values = [];
+    const calls =[];
+    for (const [key, value] of storedPlaces) {
+        place = key;        
+        let coords = place.replace(/[\(\) ]/g,'').split(',');
+        let lat1 = coords[0]
+        let lng1 = coords[1]
+        
+        // console.log(place);
+        // console.log(lat1)
+        // console.log(lng1)
+
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat1}&lon=${lng1}&appid=56ce703a41415e8c6aee4f9d2bf5ca01`;
+        
+        promises.push(await fetch(url))
+        // console.log("promises array");
+        // console.log(promises);
+        values.push(value);
+        keys.push(key)
+        // calls.push(url);
+        
+    }
+    // const response1 = Promise.all(promises);
+    // const data1 = response1.json()
+    // return data1;
+    
+    Promise.all(promises).then( result => {
+        
+        
+        let index = 0;
+        let cards = document.querySelectorAll(".saved-place-box");
+        console.log("inside promise all");
+        console.log(result);
+        result.forEach((e, index) => {
+            getDatafromPromise(e,cards[index],index,values[index],keys[index])
+            
+            
+        });
+    });
+}
+async function getDatafromPromise(p,card,index,val,key){
+    
+    card.innerHTML = "";
+    console.log("inside data getting");
+    let data = await p.json();
+    let name = val
+    let temp = data.main.temp;
+    let humidity = data.main.humidity;
+    let icon = data.weather[0].icon;
+    console.log(temp)
+
+    const clear_btn = document.createElement("div")
+    clear_btn.className = "clear-place-button"
+    clear_btn.innerText = "Remove Place"
+    const temp_element = document.createElement("div");
+    temp_element.className = "saved-place-temp-box"
+    const humidity_element = document.createElement("div");
+    humidity_element.className = "saved-place-humidity-box"
+    const name_and_icon_element = document.createElement("div");
+    name_and_icon_element.className = "saved_place_name_and_icon_box"
+    const name_element = document.createElement("div");
+    name_element.className = "saved-place-name-box"
+    const climate_time_element= document.createElement("div");
+    climate_time_element.className = "saved-place-weather-image";
+    climate_time_element.innerHTML = `<img alt="icon" src="http://openweathermap.org/img/w/${icon}.png" width="80" height="80" />`
+
+    const temp_node = document.createTextNode(`Temperature: ${temp}`);
+    const humidity_node = document.createTextNode(`Humidity: ${humidity}`);
+    const name_node = document.createTextNode(`${name}`);
+
+    humidity_element.appendChild(humidity_node)
+    temp_element.appendChild(temp_node);
+    name_element.appendChild(name_node);
+    name_and_icon_element.appendChild(name_element)
+    name_and_icon_element.appendChild(climate_time_element)
+    
+    
+    card.appendChild(name_and_icon_element)
+    card.appendChild(temp_element)
+    card.appendChild(humidity_element)
+    card.appendChild(clear_btn)
+    clear_btn.addEventListener('click' ,()=>{
+        console.log(key)
+        console.log(typeof(key))
+        if (storedPlaces.has(key)) {
+            console.log("key exists")
+        }
+        storedPlaces.delete(key)
+
+        localStorage.setItem("locations", JSON.stringify(Object.fromEntries(storedPlaces)));
+        console.log(storedPlaces)
+        card.remove();
+        add_place_btn.style.display = "block"
+        
+    })
+    card.addEventListener('click' ,()=>{
+        let place = key;        
+        let coords = place.replace(/[\(\) ]/g,'').split(',');
+        latitude = coords[0]
+        longitude = coords[1]
+        const modal_place_name = document.getElementById("modal-place-name");
+        modal_place_name.innerText = val
+        // getCurrentData();
+        // getFutureData();
+        let modal_container = document.querySelector(".modal-container")
+        modal_container.style.display = "block";
+        getModalData();
+        modal_container.addEventListener('click', ()=>{
+            modal_container.style.display = "none";
+            
+        })
+    })
+    
+    async function getModalData(){
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=56ce703a41415e8c6aee4f9d2bf5ca01`;
+    
+        try{
+            const response = await fetch(url);
+            if(!response.ok){
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("MODAL")
+            addModalData(data);
+        }catch (error){
+            console.error(error.message);
+        }
+
+    }
+    function addModalData(data){
+        let modal_container = document.querySelector(".modal-container")
+        let modal_place_name = document.querySelector(".modal-place-name")
+        let modal_weather_image = document.querySelector(".modal-weather-image")
+        let modal_temperature = document.querySelector(".modal-temperature")
+        let modal_weather = document.querySelector(".modal-weather")
+        let modal_pressure = document.querySelector(".modal-pressure")
+        let modal_humidity = document.querySelector(".modal-humidity")
+
+        let temp = data.main.temp;
+        // let tempfeelslike = data.main.feels_like;
+        let weather = data.weather[0].main;
+        // let weatherdesc = data.weather[0].description;
+        let pressure = data.main.pressure;
+        let humidity = data.main.humidity;
+    
+        let icon = data.weather[0].icon;
+    
+    
+        modal_weather_image.innerHTML = `<img alt="icon" src="http://openweathermap.org/img/w/${icon}.png" width="100" height="100" />`
+        modal_temperature.innerHTML = `Temperature  :  ${temp}`
+        modal_weather.innerHTML = `Weather  :  ${weather}`
+        modal_pressure.innerHTML = `Pressure  :  ${pressure}`
+        modal_humidity.innerHTML = `Humidity  :  ${humidity}`
+
+
+    }
+    // console.log(card[i]);
+    // card[i].htmlContent = `<p>${data}</p>`
+    console.log(data);
+    console.log(".")
+    
+    
+    
+}
+// function deleteSavedPlace(){
+//         
+// }
+// async function getPromise(url){
+//     const promise = await fetch(url);
+//     // const promise = await promise1.json();
+//     console.log("inside promise all");
+//     return promise;
 
 // }
-// var btn = document.getElementById("add-place-btn");
-// btn.addEventListener("click", event => addPlace());
+
+// function actuallyShowSavedPlaces(){
+//     showSavedPlaces();
+// }
+function showPlaceCardsOnLoad(){
+
+    let container= document.querySelector(".saved-places-container");
+    container.innerHTML = ""
+
+    for(i=0;i<storedPlaces.size;i++){
+        // console.log("SAVED PLACES")
+        
+        var input = document.createElement("div");
+        
+        input.className = "saved-place-box swiper-slide"; 
+       
+        // input.id = saved_place_count;
+        container.prepend(input);
+    }
+    
+}
+function addPlaceCard(){
+    // saved_place_count = saved_place_count+1;
+    var container= document.querySelector(".saved-places-container");
+    var input = document.createElement("div");
+    
+    input.className = "saved-place-box swiper-slide"; 
+    
+    // input.id = saved_place_count;
+    container.prepend(input);
+    // input.addEventListener('click',()=>{
+        
+    // })
+}
+
+// const swiper = new Swiper('.swiper',{
+//             modules: [Navigation, Pagination],
+//             direction : 'horizontal',
+//             navigation :{
+//                 nextEl :'swiper-button-next',
+//                 prevEl:'swiper-btn-prev'
+//             }
+// })
