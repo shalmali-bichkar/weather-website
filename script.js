@@ -212,7 +212,8 @@ function decidingBackground(icon){
 }
 function displayForecastInfo(data,temp,weather,humidity,pressure,i){
     const now = new Date();
-    let day_index = (now.getDay()+i+1);
+    let day_index = (now.getDay()+i+1)%7;
+    
     const days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     
         let day = document.getElementById(`day${i+1}-title`)
