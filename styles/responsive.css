@@ -1,0 +1,176 @@
+@media(min-height:500px) and (max-width:600px){
+    
+    .header-container{
+        display:flex;
+        flex-direction:column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .logo-title-container{
+        margin:10px;
+        margin-bottom:20px;
+    }
+    .search-bar-container{
+        margin-left:10px;
+        margin-bottom:0px;
+    }
+    .body{
+        width:100;
+    }
+    .main-container{
+        margin-top:10px;
+        display:flex;
+        
+        width:96%;
+    }
+    .main-info-and-weekly-container{
+        display:flex;
+        flex-direction: column;
+        width:100%;
+        align-items: flex-start;
+        padding:0px;
+        align-items:center;
+       
+    }
+    .place-name-and-image{
+        padding:0px;
+        margin:0px;
+        height:fit-content;
+        justify-content:center;
+    }
+    .title-box{
+        padding:0px;
+        margin:0px;
+        margin-bottom:10px;
+        height:fit-content;
+    }
+    .main-info-and-title-box{
+        display:flex;
+        margin:0px;
+        padding:0px;
+        border:0px;
+        /* justify-content: left;
+        align-self: left;
+        justify-self: left; */
+       /* background-color: aqua; */
+    }  
+    .map-container{
+        width:100%;
+        height:180px;
+    }
+    .map{
+        width:100%;
+        height:180px;
+    }
+    .main-info-box{
+        display:flex;
+        flex-direction:column;
+        width:fit-content;
+        padding:0px;
+        margin:0px;
+        height:fit-content;
+    } 
+    .weekly-forecast-and-title-box{
+        background-color: rgb(218, 218, 218);
+        border-radius:18px;
+        padding:20px;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+    .day-container{
+        margin-right:5px;
+        margin-left:5px;
+    }
+    .saved-places-title-and-add-btn-container{
+        max-width:90%;
+        margin-left:10px;
+        margin-right:10px;
+        /* border:2px soild red; */
+        /* background-color: brown; */
+    }
+    .saved-places-title{
+        margin:0px;
+    }
+    .bottom-saved-places-and-title-container{
+        /* padding-right:15px; */
+    }
+    .footer-content-container{
+        display:flex;
+        flex-direction:column;
+    }
+    .footer-code-connect-container{
+        display:flex;
+        flex-direction:column;
+        margin-left:10px;
+    }
+    .footer-logo-title-container{
+        display:flex;
+        width:100%;
+        margin:10px;
+        height:fit-content;
+        margin-left:10px;
+    }
+    .footer-view-code-container{
+        display:flex;
+        width:100%;
+        margin:10px;
+        justify-content: left;
+        height:fit-content
+    }
+    .footer-connect-links-container{
+        display:flex;
+        width:100%;
+        justify-content:left;
+        padding:0px;
+        margin-left:10px;
+    }
+    .footer-connect-text{
+        width:fit-content;
+        padding:0px;
+        margin:0px;
+
+    }
+} 
+@media (min-width:600px) and (max-width:1000px){
+    .main-container{
+        display:flex;
+        width:90%;
+    }
+    .main-info-and-weekly-container{
+        display:flex;
+        flex-direction: column;
+        
+        align-items: flex-start;
+       
+    }
+    .main-info-and-title-box{
+        display:flex;
+        justify-content: left;
+        align-self: left;
+        justify-self: left;
+        border:0px;
+        margin-bottom:20px;
+        width:100%;
+    }    
+    .main-info-box{
+        align-self: center;
+        justify-self: center;
+    } 
+    .weekly-forecast-and-title-box{
+        width:98%;
+    }
+    .weekly-forecast-box{
+        /* align-items:center; */
+        /* justify-self: center; */
+    }    
+    .day-container{
+        margin-right:5px;
+        margin-left:5px;
+    }
+    .main-info-box{
+        width:510px;
+    }
+    .weekly-forecast-and-title-box{
+        margin-left:20px;
+    }
+}              

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./main.css">
-    <link rel="stylesheet" href="./footer.css">
+    <link rel="stylesheet" href="styles/index.css">
    
     <!-- <script defer src="./loader.js" type="module"></script>  -->
 
@@ -33,197 +32,252 @@
 </head>
 <body class = "body" id = "body">
 
-    <header class = "header">
+    <header class = "header max-width-container">
         <div class = "header-container">
             <div class = "logo-title-container">
-                <div class = "header-logo" id = "header-logo"> logo </div>
-                <div class = "header-title"> title </div>
+                <div class = "header-logo" id = "header-logo"> <image src = "images/website-logo.png"></image> </div>
+                <div class = "header-title"> WeatherTop </div>
             </div>
-            <div class = "search-bar" id ="search-bar">
-                <div class = "search-bar-logo">O</div>
+            <div class = "search-bar-container" id ="search-bar-container">
+                <div class = "search-bar-logo">
+                    <div class = "search-logo" id = "search-logo"> <image src = "images/search.png"></image> </div>
+                </div>
                 <div class = "search-bar-text">
-                    <input type = 'text' id = 'search'> 
+                    <input class = "search-bar" type = 'text' id = 'search'> 
                 </div>
             </div>
         </div>
         
     </header>
-    <main class = "main">
+    <main class = "main max-width-container">
         <!-- <img src ="./sky.jpg"></img> -->
         <div class = "main-container">
+            <div class = "top-box">
+            <div class = "place-name-and-image">
+                        <div class ="place-name" id = "place-name"></div>
+                        <!-- <div id = "weather-image">img</div> -->
+                        
+            </div>
             
             <div class = "main-info-and-weekly-container">
-                <div class = "main-info-box">
-                    <div class = "place-name-and-image">
-                        <div class ="place-name" id = "place-name"></div>
-                        <div id = "weather-image">img</div>
-                        
+                <div class = "main-info-and-title-box">
+                    <div class = "title-box"> 
+                        <div class ="title">
+                            <div>Current Weather</div>
+                        </div> 
                     </div>
-                    <div class= "climate-time-box">
-                        <div class = "temp-box">
-                            <div class = "current-temp-box">
-                                <div class = "current-temp " id="current-temp"> </div>
-                                <div class = "current-temp-text">Temperature</div>
-                            </div>
-                            <div class = "feels-like-temp-box">
-                                <div class = "feels-like-temp-text">Feels like</div>
-                                <div class = "temp-feels-like " id="temp-feels-like"> </div>
-                                
-                            </div>
+                    <div class = "main-info-box">
+                        <div class = "map-container">
+                            <div class = "map" id ="map">.</div>
+                        </div>
+                        <div class= "climate-time-box">
+                            <div class = "current-day-title" id="current-day-title"> </div>
+                            <div class = "temp-box">
+                                <div class = "current-temp-box">
+                                    <div class = "current-temp-val-box">
+                                        <div class = "current-temp " id="current-temp"> </div>
+                                        <div class = "degree-unit"> *C</div>
+                                    </div>
+                                    
+                                    <div class = "current-temp-text">Temperature</div>
+                                </div>
+                                <div class = "feels-like-temp-box">
+                                    <div class = "feels-like-temp-text">Feels like</div>
+                                    <div class = "temp-feels-like " id="temp-feels-like"> </div>
+                                    
+                                </div>
                             
-                        </div>
-                        <div class  = "current-weather-stats-box">
-                            <div class = "current-weather current-stats" id="current-weather"> </div>
-                            <div class = "current-weather-description current-stats" id="current-weather-description"> </div>
-                            <div class = "current-pressure current-stats" id="current-pressure"> </div>
-                            <div class = "current-humidity current-stats" id="current-humidity"> </div>
-                        </div>
+                            </div>
+                            <!-- <div class = "current-weather-stats-container"> -->
+                                <!-- <div class  = "current-weather-stats-box"> -->
+                                    <div class = "current-weather-box">
+                                        <div class = "current-stats-text">Weather</div>
+                                        <div class = "current-weather current-stats" id="current-weather"> </div>
+                                        
+                                    </div>
+                                    <div class = "current-weather-box">
+                                        <div class = "current-stats-text">Pressure</div>
+                                        <div class = "current-pressure current-stats" id="current-pressure"> </div>
+                                        
+                                    </div>
+                                    <div class = "current-weather-box">
+                                        <div class = "current-stats-text">Humidity</div>
+                                        <div class = "current-humidity current-stats" id="current-humidity"> </div>
+                                        
+                                    </div>
+                                    <!-- <div class = "current-weather-description current-stats" id="current-weather-description"> </div> -->
+                                    
+                                    
+                                <!-- </div> -->
+                                
+                            <!-- </div> -->
                         
+                        
+                         </div>
                     </div>
                 </div>
-                <div class = "weekly-forecast-and-title-box"> 
-                    <div class = "weekly-forecast-title-box"> 
-                        <div class ="weekly-forecast-title">
+                
+                <!-- /end -->
+                <div class = "weekly-forecast-and-title-box swiper"> 
+                    <div class = "title-box"> 
+                        <div class ="title">
                             <div>Weekly Forecast</div>
                         </div> 
                     </div>
-                    <div class = "weekly-forecast-box">
-                        <div class = "day-container" id = "day1"> 
+                    <div class = "weekly-forecast-box swiper-wrapper ">
+                        
+                        <div class = "day-title-names-container swiper-slide" >
+                            <div class= "day-title-label "> Day</div>
+                            <div class = "forecast-data-names-box ">
+                                <div class ="day-info-text">temperature (*C)</div>
+                            
+                                <div class ="day-info-text">weather</div>
+                            
+                                <div class ="day-info-text">humidity</div>
+                            
+                                <div class ="day-info-text">pressure</div>
+                             </div>  
+                            
+                        </div>
+                        <div class = "day-container swiper-slide" id = "day1"> 
                             <div class= "day-title" id = "day1-title"> Day 1</div>
                             <div class ="day-entire-info-box" id="day1-info">
                                 <div class = "day-temp-box">
                                     <div class="day-info-box day-info day-temp" id ="day1-temp"></div>
-                                    <div class ="day-info-text">temp</div>
+                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class = "day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day1-weather"></div>
-                                    <div class ="day-info-text">weather</div>
+                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class ="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day1-humidity"></div>
-                                    <div class ="day-info-text">humidity</div>
+                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class = "day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day1-pressure"></div>
-                                    <div class ="day-info-text">pressure</div>
+                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
                         </div>
-                        <div class = "day-container" id = "day2">
+                        <div class = "day-container swiper-slide" id = "day2">
                             <div class= "day-title" id = "day2-title"> Day 2</div>
                             <div class ="day-entire-info-box" id="day2-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day2-temp"></div>
-                                    <div class ="day-info-text">temp</div>
+                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day2-weather"></div>
-                                    <div class ="day-info-text">weather</div>
+                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day2-humidity"></div>
-                                    <div class ="day-info-text">humidity</div>
+                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day2-pressure"></div>
-                                    <div class ="day-info-text">pressure</div>
+                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
                         </div>
-                        <div class = "day-container" id = "day3">
+                        <div class = "day-container swiper-slide" id = "day3">
                             <div class= "day-title"  id = "day3-title"> Day 3</div>
                             <div class ="day-entire-info-box" id="day3-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day3-temp"></div>
-                                    <div class ="day-info-text">temp</div>
+                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day3-weather"></div>
-                                    <div class ="day-info-text">weather</div>
+                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day3-humidity"></div>
-                                    <div class ="day-info-text">humidity</div>
+                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day3-pressure"></div>
-                                    <div class ="day-info-text">pressure</div>
+                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
                         </div>
-                        <div class = "day-container" id = "day4">
+                        <div class = "day-container swiper-slide" id = "day4">
                             <div class= "day-title" id = "day4-title"> Day 4</div>
                             <div class ="day-entire-info-box" id="day4-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day4-temp"></div>
-                                    <div class ="day-info-text">temp</div>
+                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day4-weather"></div>
-                                    <div class ="day-info-text">weather</div>
+                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day4-humidity"></div>
-                                    <div class ="day-info-text">humidity</div>
+                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day4-pressure"></div>
-                                    <div class ="day-info-text">pressure</div>
+                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div> 
                             </div>
                             
                         </div>
-                        <div class = "day-container" id = "day5">
+                        <div class = "day-container swiper-slide" id = "day5">
                             <div class= "day-title" id = "day5-title"> Day 5</div>
                             <div class ="day-entire-info-box" id="day5-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day5-temp"></div>
-                                    <div class ="day-info-text">temp</div>
+                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day5-weather"></div>
-                                    <div class ="day-info-text">weather</div>
+                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day5-humidity"></div>
-                                    <div class ="day-info-text">humidity</div>
+                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day5-pressure"></div>
-                                    <div class ="day-info-text">pressure</div>
+                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
                         </div>
-                        <div class = "day-container" id = "day6">
+                        <div class = "day-container swiper-slide" id = "day6">
                             <div class= "day-title" id = "day6-title"> Day 6</div>
                             <div class ="day-entire-info-box" id="day6-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day6-temp"></div>
-                                    <div class ="day-info-text">temp</div>
+                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day6-weather" id ="day6-weather"></div>
-                                    <div class ="day-info-text">weather</div>
+                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day6-humidity" id ="day6-humidity"></div>
-                                    <div class ="day-info-text">humidity</div>
+                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day6-pressure" id ="day6-pressure"></div>
-                                    <div class ="day-info-text">pressure</div>
+                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>  
                             </div>
                             
                         </div>
+
                     </div>
-                    
+                                            <div class = "swiper-button-prev"></div>
+                        <div class = "swiper-button-next"></div>
     
                 </div>
+            </div>
             </div>
             <div class = "modal-container" id = "modal-container">
                 <div class = "modal">
@@ -234,41 +288,51 @@
                         <div class = "modal-weather-image"id = "modal-weather-image">img</div>
                     </div>
                     <div class = "modal-main-info">
-                        <div class = "modal-temperature"></div>
-                        <div class = "modal-weather"></div>
-                        <div class = "modal-pressure"></div>
-                        <div class = "modal-humidity"></div>
+                        
+                        <div class = "modal-temperature modal-weathet-data"></div>
+                        <div class = "modal-weather modal-weather-data"></div>
+                        <div class = "modal-pressure modal-weather-data"></div>
+                        <div class = "modal-humidity modal-weather-data"></div>
+                        
                     </div>
+                    <div class = "modal-close-btn" id = "modal-close-btn">Close</div>
 
                     <div class ="modal-future-box"></div>
                 </div>
             </div>
-            <div class = "bottom-saved-places-and-add-btn-container ">
-            <div class = "saved-places-and-map-container swiper"> 
-                <div class = "map" id ="map">.</div>
-                
-                
-                <div class = "saved-places-container swiper-wrapper">
-                    <!-- <div class = "saved-place-box"> -->
-                        <!-- <div class = "saved-place-name-box" id = "saved-place-name-box"></div> -->
-                        <!-- <div class = "saved-place-temp-box" id = "saved-place-temp-box"></div> -->
-                        <!-- <div class = "saved-place-humidity-box" id = saved-place-humidity-box></div> -->
-                        <!-- <div class = "clear-place-button"></div> -->
-                    <!-- </div> -->
+            <div class = "bottom-saved-places-and-title-container ">
+                <div class = "saved-places-title-and-add-btn-container">
+                    <div class = "saved-places-title">Saved Places</div>
+                    
+                    <div class = "add-place-btn" id ="add-place-btn">Add Place</div>
                 </div>
-                <div class = "swiper-button-prev"></div>
-                <div class = "swiper-button-next"></div>
+                <div class = "saved-places-and-map-container swiper"> 
+                    <!-- <div class = "swiper"> -->
+                        <div>.</div>
+                        <div class = "saved-places-container swiper-wrapper">
+                            <!-- <div class = "saved-place-box"> -->
+                                <!-- <div class = "saved-place-name-box" id = "saved-place-name-box"></div> -->
+                                <!-- <div class = "saved-place-temp-box" id = "saved-place-temp-box"></div> -->
+                                <!-- <div class = "saved-place-humidity-box" id = saved-place-humidity-box></div> -->
+                                <!-- <div class = "clear-place-button"></div> -->
+                            <!-- </div> -->
+                        </div>
+                        <div class = "swiper-button-prev"></div>
+                        <div class = "swiper-button-next"></div>
+                    </div>
+                
+                    
                 
                 
 
-            </div>
-            <div class = "add-place-btn" id ="add-place-btn">+</div>
+                <!-- </div> -->
+                
             </div>
             
         </div>
 
     </main>
-    <footer class ="footer">
+    <footer class ="footer max-width-container">
         <div class = "footer-container footer-content-container">
             <div class="footer-code-connect-container">
                 <div class="footer-logo-title-container">
@@ -306,7 +370,7 @@
     console.log("SWIPER");
 
     </script>
-    <script type="text/javascript" src="./script.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
     
 </body>
 </html>

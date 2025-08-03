@@ -161,13 +161,21 @@ async function getFutureData(){
         console.error(error.message);
     }
 }
-
+function getDayIndex(){
+    const now = new Date();
+    let day_index = now.getDay()%7;
+    return day_index;
+}
 
 
 function displayClimateInfo(data){
-    
-    var temp = data.main.temp;
-    var tempfeelslike = data.main.feels_like;
+    const days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    day_index = getDayIndex();
+    let day = document.getElementById(`current-day-title`)
+    day.innerHTML = days_of_week[day_index];
+
+    var temp = (data.main.temp -273.0).toFixed(2);
+    var tempfeelslike = (data.main.feels_like-273).toFixed(2);
     var weather = data.weather[0].main;
     var weatherdesc = data.weather[0].description;
     var pressure = data.main.pressure;
@@ -175,22 +183,22 @@ function displayClimateInfo(data){
     
     let icon = data.weather[0].icon;
     
-    const climate_time_box= document.getElementById("weather-image");
+    // const climate_time_box= document.getElementById("weather-image");
     
-    climate_time_box.innerHTML = `<img alt="icon" src="http://openweathermap.org/img/w/${icon}.png" width="100" height="100" />`
+    // climate_time_box.innerHTML = `<img alt="icon" src="http://openweathermap.org/img/w/${icon}.png" width="100" height="100" />`
     
     
     console.log(typeof(icon))
     const current_temp = document.getElementById("current-temp");
     const temp_feels_like = document.getElementById("temp-feels-like");
     const current_weather = document.getElementById("current-weather");
-    const current_weather_description = document.getElementById("current-weather-description");
+    // const current_weather_description = document.getElementById("current-weather-description");
     const current_pressure = document.getElementById("current-pressure");
     const current_humidity = document.getElementById("current-humidity");
     current_temp.innerHTML =temp;
     temp_feels_like.innerHTML = tempfeelslike;
     current_weather.innerHTML  = weather;
-    current_weather_description.innerHTML = weatherdesc;
+    // current_weather_description.innerHTML = weatherdesc;
     current_pressure.innerHTML = pressure;
     current_humidity.innerHTML = humidity;
     // console.log(temp);
@@ -203,23 +211,24 @@ function displayClimateInfo(data){
 }
 function decidingBackground(icon){
     let icons_map = new Map([["01d",0],["02d",1],["03d",2],["04d",3],["09d",4],["10d",5],["11d",6],["13d",7],["50d",8],["01n",9],["02n",10],["03n",11],["04n",12],["09n",13],["10n",14],["11n",15],["13n",17],["50n",18]])
-    const insert_arr = ["clearsky.jpg","sky.jpg","sky.jpg","sky.jpg","rainfall.jpeg","rainfall.jpeg","thunderstorm.jpg","snowfall.jpg","mist.jpg","clearnightsky.jpg","nightclouds.jpg","nightclouds.jpg","nightclouds.jpg","rainfall.jpeg","rainfall.jpeg","thunderstorm.jpg",,"snowfall.jpg","mist.jpg"]
+    const insert_arr = ["./images/clearsky.jpg","./images/sky.jpg","./images/sky.jpg","./images/sky.jpg","./images/rainfall.jpg","./images/rainfall.jpeg","./images/thunderstorm.jpeg","./images/snowfall.jpg","./images/mist.jpg","./images/clearnightsky.jpg","./images/nightclouds.jpg","./images/nightclouds.jpg","./images/nightclouds.jpg","./images/rainfall.jpeg","./images/rainfall.jpeg","./images/thunderstorm.jpg","./images/snowfall.jpg","./images/mist.jpg"]
     let id = icons_map.get(icon)
     let img_insert = insert_arr[id];
     console.log("EXECUTED")
     document.getElementById("body").style.backgroundImage = `url(${img_insert})`;
     
 }
+
 function displayForecastInfo(data,temp,weather,humidity,pressure,i){
     const now = new Date();
     let day_index = (now.getDay()+i+1)%7;
     
-    const days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const days_of_week = ['Su', 'M', 'T', 'W', 'Th', 'F', 'S'];
     
         let day = document.getElementById(`day${i+1}-title`)
         day.innerHTML = days_of_week[day_index];
 
-        let day_temp_info = data.list[i].main.temp;
+        let day_temp_info = (data.list[i].main.temp-273).toFixed(1);
         let day_temp = document.getElementById(temp);
         day_temp.innerHTML = day_temp_info;
 
@@ -236,98 +245,14 @@ function displayForecastInfo(data,temp,weather,humidity,pressure,i){
         day_pressure.innerHTML = day_pressure_info;
         
     
-    // var day1_temp_info = data.list[0].main.temp;
-    // var day2_temp_info = data.list[1].main.temp;
-    // var day3_temp_info = data.list[2].main.temp;
-    // var day4_temp_info = data.list[3].main.temp;
-    // var day5_temp_info = data.list[4].main.temp;
-    // var day6_temp_info = data.list[5].main.temp;
-
-    // const day1_temp = document.getElementById("day1-temp");
-    // const day2_temp = document.getElementById("day2-temp");
-    // const day3_temp = document.getElementById("day3-temp");
-    // const day4_temp = document.getElementById("day4-temp");
-    // const day5_temp = document.getElementById("day5-temp");
-    // const day6_temp = document.getElementById("day6-temp");
-
-    // day1_temp.innerHTML = day1_temp_info;
-    // day2_temp.innerHTML = day2_temp_info;
-    // day3_temp.innerHTML = day3_temp_info;
-    // day4_temp.innerHTML = day4_temp_info;
-    // day5_temp.innerHTML = day5_temp_info;
-    // day6_temp.innerHTML = day6_temp_info;
-
-    // var day1_weather_info = data.list[0].weather[0].main;
-    // var day2_weather_info = data.list[1].weather[0].main;
-    // var day3_weather_info = data.list[2].weather[0].main;
-    // var day4_weather_info = data.list[3].weather[0].main;
-    // var day5_weather_info = data.list[4].weather[0].main;
-    // var day6_weather_info = data.list[5].weather[0].main;
-
-
-    // const day1_weather = document.getElementById("day1-weather");
-    // const day2_weather = document.getElementById("day2-weather");
-    // const day3_weather = document.getElementById("day3-weather");
-    // const day4_weather = document.getElementById("day4-weather");
-    // const day5_weather = document.getElementById("day5-weather");
-    // const day6_weather = document.getElementById("day6-weather");
-
-    // day1_weather.innerHTML = day1_weather_info;
-    // day2_weather.innerHTML = day2_weather_info;
-    // day3_weather.innerHTML = day3_weather_info;
-    // day4_weather.innerHTML = day4_weather_info;
-    // day5_weather.innerHTML = day5_weather_info;
-    // day6_weather.innerHTML = day6_weather_info;
-
-
-    // var day1_humidity_info = data.list[0].main.humidity;
-    // var day2_humidity_info = data.list[1].main.humidity;
-    // var day3_humidity_info = data.list[2].main.humidity;
-    // var day4_humidity_info = data.list[3].main.humidity;
-    // var day5_humidity_info = data.list[4].main.humidity;
-    // var day6_humidity_info = data.list[5].main.humidity;    
-
-    // const day1_humidity = document.getElementById("day1-humidity");
-    // const day2_humidity = document.getElementById("day2-humidity");
-    // const day3_humidity = document.getElementById("day3-humidity");
-    // const day4_humidity = document.getElementById("day4-humidity");
-    // const day5_humidity = document.getElementById("day5-humidity");
-    // const day6_humidity = document.getElementById("day6-humidity");
-
-    // day1_humidity.innerHTML = day1_humidity_info;
-    // day2_humidity.innerHTML = day2_humidity_info;
-    // day3_humidity.innerHTML = day3_humidity_info;
-    // day4_humidity.innerHTML = day4_humidity_info;
-    // day5_humidity.innerHTML = day5_humidity_info;
-    // day6_humidity.innerHTML = day6_humidity_info;
-
-    // var day1_pressure_info = data.list[0].main.pressure;
-    // var day2_pressure_info = data.list[1].main.pressure;
-    // var day3_pressure_info = data.list[2].main.pressure;
-    // var day4_pressure_info = data.list[3].main.pressure;
-    // var day5_pressure_info = data.list[4].main.pressure;
-    // var day6_pressure_info = data.list[5].main.pressure;
-
-    // const day1_pressure = document.getElementById("day1-pressure");
-    // const day2_pressure = document.getElementById("day2-pressure");
-    // const day3_pressure = document.getElementById("day3-pressure");
-    // const day4_pressure = document.getElementById("day4-pressure");
-    // const day5_pressure = document.getElementById("day5-pressure");
-    // const day6_pressure = document.getElementById("day6-pressure");
-    
-    // day1_pressure.innerHTML = day1_pressure_info;
-    // day2_pressure.innerHTML = day2_pressure_info;
-    // day3_pressure.innerHTML = day3_pressure_info;
-    // day4_pressure.innerHTML = day4_pressure_info;
-    // day5_pressure.innerHTML = day5_pressure_info;
-    // day6_pressure.innerHTML = day6_pressure_info;
+   
 
 }
 
 const successCallback = (position)=> {
     console.log(position);
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
+    latitude = (position.coords.latitude).toFixed(3);
+    longitude = (position.coords.longitude).toFixed(3);
     console.log(longitude);
     getCurrentData();
     getFutureData();
@@ -577,12 +502,15 @@ async function getDatafromPromise(p,card,index,val,key){
         let modal_container = document.querySelector(".modal-container")
         modal_container.style.display = "block";
         getModalData();
-        modal_container.addEventListener('click', ()=>{
-            modal_container.style.display = "none";
-            
-        })
+        
     })
-    
+    const modal_close_btn = document.getElementById("modal-close-btn")
+    modal_close_btn.addEventListener('click',()=>{
+         let modal_container = document.querySelector(".modal-container")
+        modal_container.style.display = "none";
+        
+    })
+
     async function getModalData(){
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=56ce703a41415e8c6aee4f9d2bf5ca01`;
     
@@ -675,6 +603,8 @@ function addPlaceCard(){
     
     // input.id = saved_place_count;
     container.prepend(input);
+    console.log("container");
+    console.log(container);
     // input.addEventListener('click',()=>{
         
     // })

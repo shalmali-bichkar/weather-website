@@ -1,0 +1,9 @@
+@import 'header.css';
+@import 'main.css';
+@import 'footer.css';
+@import 'responsive.css';
+
+.max-width-container{
+    max-width:1920px;
+    width:100%;
+}
