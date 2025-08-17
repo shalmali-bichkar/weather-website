@@ -10,21 +10,9 @@
 
     <link rel="stylesheet" href="styles/index.css">
    
-    <!-- <script defer src="./loader.js" type="module"></script>  -->
-
-    <!-- <script>setTimeout(1000);</script> -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&loading=async&libraries=places,marker&v=weekly&callback=start"></script>
-    <!-- <script src ="https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E"></script> -->
-    <!-- <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&callback=initMap&v=weekly&libraries=marker"
-    ></script> -->
    
-     <!-- <script>
-        var latitude;
-        var longitude;
-        window.onload(initMap())
-        </script> -->
-    <!-- <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&libraries=places,marker"></script> -->
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2HX-nRhtrlZEqd4GsaDXzVnqdzAh1-E&loading=async&libraries=places,marker&v=weekly&callback=start"></script>
+    
 
         
       
@@ -39,24 +27,23 @@
                 <div class = "header-title"> WeatherTop </div>
             </div>
             <div class = "search-bar-container" id ="search-bar-container">
-                <div class = "search-bar-logo">
-                    <div class = "search-logo" id = "search-logo"> <image src = "images/search.png"></image> </div>
-                </div>
+                
                 <div class = "search-bar-text">
                     <input class = "search-bar" type = 'text' id = 'search'> 
+                </div>
+                <div class = "search-bar-logo">
+                     <image  class = "search-logo" src = "images/search.png"></image> 
                 </div>
             </div>
         </div>
         
     </header>
     <main class = "main max-width-container">
-        <!-- <img src ="./sky.jpg"></img> -->
+        
         <div class = "main-container">
             <div class = "top-box">
             <div class = "place-name-and-image">
-                        <div class ="place-name" id = "place-name"></div>
-                        <!-- <div id = "weather-image">img</div> -->
-                        
+                <div class ="place-name" id = "place-name"></div>
             </div>
             
             <div class = "main-info-and-weekly-container">
@@ -76,28 +63,22 @@
                                 <div class = "current-temp-box">
                                     <div class = "current-temp-val-box">
                                         <div class = "current-temp " id="current-temp"> </div>
-                                        <div class = "degree-unit"> *C</div>
+                                        <div class = "degree-unit"> &degC</div>
                                     </div>
                                     
                                     <div class = "current-temp-text">Temperature</div>
                                 </div>
                                 <div class = "feels-like-temp-box">
-                                    <div class = "feels-like-temp-text">Feels like</div>
-                                    <div class = "temp-feels-like " id="temp-feels-like"> </div>
                                     
+                                    <div class = "temp-feels-like " id="temp-feels-like"> </div>
+                                    <div class = "feels-like-temp-text">Feels like</div>
                                 </div>
                             
                             </div>
-                            <!-- <div class = "current-weather-stats-container"> -->
-                                <!-- <div class  = "current-weather-stats-box"> -->
+                            
                                     <div class = "current-weather-box">
                                         <div class = "current-stats-text">Weather</div>
                                         <div class = "current-weather current-stats" id="current-weather"> </div>
-                                        
-                                    </div>
-                                    <div class = "current-weather-box">
-                                        <div class = "current-stats-text">Pressure</div>
-                                        <div class = "current-pressure current-stats" id="current-pressure"> </div>
                                         
                                     </div>
                                     <div class = "current-weather-box">
@@ -105,12 +86,13 @@
                                         <div class = "current-humidity current-stats" id="current-humidity"> </div>
                                         
                                     </div>
-                                    <!-- <div class = "current-weather-description current-stats" id="current-weather-description"> </div> -->
+                                    <div class = "current-weather-box">
+                                        <div class = "current-stats-text">Pressure</div>
+                                        <div class = "current-pressure current-stats" id="current-pressure"> </div>
+                                        
+                                    </div>
                                     
-                                    
-                                <!-- </div> -->
-                                
-                            <!-- </div> -->
+                               
                         
                         
                          </div>
@@ -129,13 +111,13 @@
                         <div class = "day-title-names-container swiper-slide" >
                             <div class= "day-title-label "> Day</div>
                             <div class = "forecast-data-names-box ">
-                                <div class ="day-info-text">temperature (*C)</div>
+                                <div class ="day-info-text">temperature (&degC)</div>
                             
                                 <div class ="day-info-text">weather</div>
                             
-                                <div class ="day-info-text">humidity</div>
+                                <div class ="day-info-text">humidity (%)</div>
                             
-                                <div class ="day-info-text">pressure</div>
+                                <div class ="day-info-text">pressure (hPa)</div>
                              </div>  
                             
                         </div>
@@ -144,19 +126,19 @@
                             <div class ="day-entire-info-box" id="day1-info">
                                 <div class = "day-temp-box">
                                     <div class="day-info-box day-info day-temp" id ="day1-temp"></div>
-                                    <!-- <div class ="day-info-text">temp</div> -->
+                                    
                                 </div>
                                 <div class = "day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day1-weather"></div>
-                                    <!-- <div class ="day-info-text">weather</div> -->
+                                    
                                 </div>
                                 <div class ="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day1-humidity"></div>
-                                    <!-- <div class ="day-info-text">humidity</div> -->
+                                   
                                 </div>
                                 <div class = "day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day1-pressure"></div>
-                                    <!-- <div class ="day-info-text">pressure</div> -->
+                                    
                                 </div>
                             </div>
                             
@@ -166,19 +148,16 @@
                             <div class ="day-entire-info-box" id="day2-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day2-temp"></div>
-                                    <!-- <div class ="day-info-text">temp</div> -->
+                                    
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day2-weather"></div>
-                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day2-humidity"></div>
-                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day2-pressure"></div>
-                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
@@ -188,19 +167,15 @@
                             <div class ="day-entire-info-box" id="day3-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day3-temp"></div>
-                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day3-weather"></div>
-                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day3-humidity"></div>
-                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day3-pressure"></div>
-                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
@@ -210,19 +185,15 @@
                             <div class ="day-entire-info-box" id="day4-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day4-temp"></div>
-                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day4-weather"></div>
-                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day4-humidity"></div>
-                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day4-pressure"></div>
-                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div> 
                             </div>
                             
@@ -232,19 +203,15 @@
                             <div class ="day-entire-info-box" id="day5-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day5-temp"></div>
-                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day-weather" id ="day5-weather"></div>
-                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day-humidity" id ="day5-humidity"></div>
-                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day-pressure" id ="day5-pressure"></div>
-                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>
                             </div>
                             
@@ -254,19 +221,15 @@
                             <div class ="day-entire-info-box" id="day6-info">
                                 <div class="day-info-box day-temp-box">
                                     <div class="day-info day-temp" id ="day6-temp"></div>
-                                    <!-- <div class ="day-info-text">temp</div> -->
                                 </div>
                                 <div class="day-info-box day-weather-box">
                                     <div class="day-info day6-weather" id ="day6-weather"></div>
-                                    <!-- <div class ="day-info-text">weather</div> -->
                                 </div>
                                 <div class="day-info-box day-humidity-box">
                                     <div class="day-info day6-humidity" id ="day6-humidity"></div>
-                                    <!-- <div class ="day-info-text">humidity</div> -->
                                 </div>
                                 <div class="day-info-box day-pressure-box">
                                     <div class="day-info day6-pressure" id ="day6-pressure"></div>
-                                    <!-- <div class ="day-info-text">pressure</div> -->
                                 </div>  
                             </div>
                             
@@ -281,8 +244,7 @@
             </div>
             <div class = "modal-container" id = "modal-container">
                 <div class = "modal">
-                    <!-- <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non laborum, nesciunt ipsa corrupti sapiente quibusdam voluptas sint architecto, omnis vel placeat voluptate quos? Nisi, saepe adipisci distinctio, sint odit doloribus nobis debitis ducimus minima aut eum! Deserunt reprehenderit tenetur unde.
-                    </div> -->
+
                     <div class = "modal-place-name-and-image">
                         <div class ="modal-place-name" id = "modal-place-name"></div>
                         <div class = "modal-weather-image"id = "modal-weather-image">img</div>
@@ -307,7 +269,7 @@
                     <div class = "add-place-btn" id ="add-place-btn">Add Place</div>
                 </div>
                 <div class = "saved-places-and-map-container swiper"> 
-                    <!-- <div class = "swiper"> -->
+                    
                         <div>.</div>
                         <div class = "saved-places-container swiper-wrapper">
                             <!-- <div class = "saved-place-box"> -->
@@ -315,6 +277,7 @@
                                 <!-- <div class = "saved-place-temp-box" id = "saved-place-temp-box"></div> -->
                                 <!-- <div class = "saved-place-humidity-box" id = saved-place-humidity-box></div> -->
                                 <!-- <div class = "clear-place-button"></div> -->
+                                <!-- <div class = "know-more-button"></div> -->
                             <!-- </div> -->
                         </div>
                         <div class = "swiper-button-prev"></div>
@@ -336,11 +299,11 @@
         <div class = "footer-container footer-content-container">
             <div class="footer-code-connect-container">
                 <div class="footer-logo-title-container">
-                    <img class="footer-calc-icon"  alt="bello"></img>
-                    <p class ="footer-title"> Weather Website</p>
+                    <img src = "images/website-logo.png" class="footer-icon"  alt="bello"></img>
+                    <p class ="footer-title"> WeatherTop</p>
                 </div>
                 <div class="footer-view-code-container">
-                    <p class="footer-view-code-text"><a href="https://github.com/shalmali-bichkar/calculator-website/blob/main/index.html" target="blank" class="footer-view-code-text">View Code</a></p>
+                    <p class="footer-view-code-text"><a href="https://github.com/shalmali-bichkar/weather-website/blob/main/index.html" target="blank" class="footer-view-code-text">View Code</a></p>
                 </div>
                 <div class="footer-connect-links-container"> 
                     <p class="footer-connect-text">Connect with me :</p>
@@ -360,7 +323,6 @@
        
         
     const swiper = new Swiper('.swiper',{
-            // direction : 'horizontal',
             navigation :{
                 nextEl :'.swiper-button-next',
                 prevEl: '.swiper-button-prev',

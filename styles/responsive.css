@@ -49,10 +49,6 @@
         margin:0px;
         padding:0px;
         border:0px;
-        /* justify-content: left;
-        align-self: left;
-        justify-self: left; */
-       /* background-color: aqua; */
     }  
     .map-container{
         width:100%;
@@ -85,14 +81,11 @@
         max-width:90%;
         margin-left:10px;
         margin-right:10px;
-        /* border:2px soild red; */
-        /* background-color: brown; */
     }
     .saved-places-title{
         margin:0px;
     }
     .bottom-saved-places-and-title-container{
-        /* padding-right:15px; */
     }
     .footer-content-container{
         display:flex;
@@ -160,8 +153,6 @@
         width:98%;
     }
     .weekly-forecast-box{
-        /* align-items:center; */
-        /* justify-self: center; */
     }    
     .day-container{
         margin-right:5px;

@@ -13,6 +13,7 @@ p{ /* removing margin and padding from all paragraph tags*/
     margin:0px 0px 0px 0px;
     padding-top:6px;
     padding-bottom: 4px;
+    font-size:20px;
     background-color: rgba(240, 248, 255, 0.342);
     margin:0px;
 }
@@ -21,9 +22,7 @@ p{ /* removing margin and padding from all paragraph tags*/
     display:flex;
     flex-direction: column;
     width:100%;
-    /* margin-left:70px;
-    margin-right:70px; */
-    /* border:2px solid green; */
+    width:1440px;
     
 }
 
@@ -36,6 +35,7 @@ p{ /* removing margin and padding from all paragraph tags*/
 
 .footer-logo-title-container{ /*showing logo and 'calculator' and arranging them both next to each other */
     padding:2px;
+    margin-left:2px;
     display:flex;
     flex-direction: row;
     height:34px;
@@ -43,9 +43,9 @@ p{ /* removing margin and padding from all paragraph tags*/
     width:33%;
 }
 
-.footer-calc-icon{ /*styling calculator icon in the footer*/
-    height:20px;
-    width:18px;
+.footer-icon{ /*styling calculator icon in the footer*/
+    height:26px;
+    width:26px;
     border-radius: 4px;
 } 
 
@@ -68,7 +68,7 @@ p{ /* removing margin and padding from all paragraph tags*/
 }
 
 .footer-view-code-text:hover{ /*adding effects to view-code text on hover */
-    color: var(--dark-btn-purple);
+    
     text-decoration: underline;
     cursor:pointer;
 }
@@ -81,7 +81,7 @@ p{ /* removing margin and padding from all paragraph tags*/
     height:34px;
     width:33%;
     align-items: center;
-    padding-left:    
+    /* padding-left:     */
 }
 
 
@@ -111,6 +111,24 @@ p{ /* removing margin and padding from all paragraph tags*/
     padding:0px;
     font-size: 16px;
     align-self: center;
-    color:rgb(73, 73, 73);
+    color:rgb(43, 42, 42);
     letter-spacing: 2px;
+}
+
+.dark-theme .footer-icon{
+    filter: invert(80%);
+}
+.dark-theme .footer{
+    background-color: #071621d9;
+    color:#DDE6ED;
+    border-top:0px;
+}
+.dark-theme .footer-link-icon{
+    filter: invert(80%);
+}
+.dark-theme .footer-view-code-text{
+    color:#DDE6ED;
+}
+.dark-theme .footer-end-display{
+    color:#737475;
 }
