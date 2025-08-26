@@ -113,7 +113,7 @@ async function getCurrentData(){
 }
 
 async function getFutureData(){
-    const url2 = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=56ce703a41415e8c6aee4f9d2bf5ca01`;
+    const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=56ce703a41415e8c6aee4f9d2bf5ca01`;
     try{
         const forecast_response = await fetch(url2);
         if(!forecast_response.ok){
